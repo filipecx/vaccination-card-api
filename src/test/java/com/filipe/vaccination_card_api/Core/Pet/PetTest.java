@@ -14,7 +14,7 @@ public class PetTest {
     @Test
     @DisplayName("It should be able to create a new pet. ") 
     void testCreatePetSuccess() {
-        Pet pet = new Pet("Maya", "urlmtoloka");
+        Pet pet = new Pet("Maya", "imageurl");
 
         assertNotNull(pet);
         assertEquals("Maya", pet.getName());
@@ -25,14 +25,14 @@ public class PetTest {
     void testCreatePetFail() {
 
         assertThrows(PetError.class, () -> {
-            new Pet("M", "urlmtoloka");
+            new Pet("M", "imageurl");
         });
     }
 
     @Test
     @DisplayName("It should be able to change the pet's name. ")
     void testChangePetNameSuccess() {
-        Pet pet = new Pet("Maya", "urlmtoloka");
+        Pet pet = new Pet("Maya", "imageurl");
         pet.changePetName("Magda");
 
         assertEquals("Magda", pet.getName());
@@ -41,7 +41,7 @@ public class PetTest {
     @Test
     @DisplayName("It should NOT be able to change the pet's name. ")
     void testChangePetNameFail() {
-        Pet pet = new Pet("Maya", "urlmtoloka");
+        Pet pet = new Pet("Maya", "imageurl");
         
         assertThrows(PetError.class, () -> {
             pet.changePetName("M");
@@ -52,7 +52,7 @@ public class PetTest {
     @Test
     @DisplayName("It should be able to change if pet is active. ")
     void testChangeActiveSuccess() {
-        Pet pet = new Pet("Maya", "urlmtoloka");
+        Pet pet = new Pet("Maya", "imageurl");
         pet.changeActive(false);
 
         assertEquals(false, pet.getActive());
