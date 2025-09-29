@@ -92,6 +92,7 @@ public class Vaccination {
 
     public void changeNextDate(LocalDate newDate) {
         validateNextDate(newDate, this.getDate());
+        this.nextAdministration = newDate;
     }
 
     private void validateDate(LocalDate date, LocalDate nextDate) {
