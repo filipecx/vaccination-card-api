@@ -53,8 +53,8 @@ public class PetRepositoryImp implements IpetRepository{
         PetEntity petEntity = petEntityRepository.findById(id)
         .orElseThrow(() -> new PetEntityException("Pet not found by this id"));
         petEntity.setActive(active);
-
-        Pet pet = petMapper.toDomain(petEntity);
+        PetEntity updatedPet = petEntityRepository.save(petEntity);
+        Pet pet = petMapper.toDomain(updatedPet);
         return pet;
     }
 

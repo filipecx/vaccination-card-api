@@ -13,6 +13,10 @@ public class GetAllPetsService implements GetAllPetsUseCase{
         this.petRepository = petRepository;
     }
 
+    public List<Pet> execute() {
+        List<Pet> listOfPets = petRepository.getAllPets();
+        return listOfPets;
+    }
    
 
 }

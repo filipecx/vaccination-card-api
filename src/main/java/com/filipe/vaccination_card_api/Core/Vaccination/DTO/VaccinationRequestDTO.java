@@ -13,7 +13,7 @@ public record VaccinationRequestDTO(
     String vaccineBatchNumber,
     String veterinarianName,
     String veterinarianCrmv,
-    Pet pet
+    Integer petId
 
 ) {
 

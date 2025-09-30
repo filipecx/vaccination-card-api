@@ -1,7 +1,6 @@
 package com.filipe.vaccination_card_api.Core.Pet.Services;
 
 import com.filipe.vaccination_card_api.Core.Pet.Pet;
-import com.filipe.vaccination_card_api.Core.Pet.DTO.PetRequestDTO;
 import com.filipe.vaccination_card_api.Core.Pet.Repository.IpetRepository;
 import com.filipe.vaccination_card_api.Core.Pet.UseCases.CreatePetUseCase;
 
@@ -12,8 +11,8 @@ public class CreatePetService implements CreatePetUseCase{
         this.petRepository = petRepository;
     }
 
-    public Pet execute(PetRequestDTO pet) {
-        Pet newPet = new Pet(pet.name(), pet.image_url());
+    public Pet execute(Pet pet) {
+        Pet newPet = new Pet(pet.getName(), pet.getImageUrl());
         Pet persistedPet = this.petRepository.createPet(newPet);
         
         return persistedPet;
