@@ -1,0 +1,9 @@
+package com.filipe.vaccination_card_api.Core.Vaccination.UseCases;
+
+import java.util.List;
+
+import com.filipe.vaccination_card_api.Core.Vaccination.Vaccination;
+
+public interface GetNextVaccinationsUseCase {
+    List<Vaccination> execute(int id);
+}
