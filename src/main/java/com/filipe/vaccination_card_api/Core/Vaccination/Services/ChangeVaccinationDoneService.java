@@ -1,8 +1,11 @@
 package com.filipe.vaccination_card_api.Core.Vaccination.Services;
 
+import org.springframework.stereotype.Service;
+
 import com.filipe.vaccination_card_api.Core.Vaccination.IvaccinationRepository;
 import com.filipe.vaccination_card_api.Core.Vaccination.UseCases.ChangeVaccinationDoneUseCase;
 
+@Service
 public class ChangeVaccinationDoneService implements ChangeVaccinationDoneUseCase{
     private final IvaccinationRepository ivaccinationRepository;
 

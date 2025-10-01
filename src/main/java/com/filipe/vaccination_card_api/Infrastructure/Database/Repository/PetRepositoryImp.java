@@ -2,12 +2,15 @@ package com.filipe.vaccination_card_api.Infrastructure.Database.Repository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.filipe.vaccination_card_api.Core.Pet.Pet;
 import com.filipe.vaccination_card_api.Core.Pet.Repository.IpetRepository;
 import com.filipe.vaccination_card_api.Infrastructure.Database.DatabaseError.PetEntityException;
 import com.filipe.vaccination_card_api.Infrastructure.Database.Entity.PetEntity;
 import com.filipe.vaccination_card_api.Infrastructure.Database.Mapper.PetMapper;
 
+@Repository
 public class PetRepositoryImp implements IpetRepository{
     private final PetEntityRepository petEntityRepository;
     private final PetMapper petMapper;

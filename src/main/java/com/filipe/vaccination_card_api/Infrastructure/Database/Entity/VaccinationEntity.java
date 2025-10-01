@@ -55,5 +55,5 @@ public class VaccinationEntity {
 
     @ManyToOne
     @JoinColumn(name = "pet_id", nullable = false)
-    private Pet pet;
+    private PetEntity pet;
 }

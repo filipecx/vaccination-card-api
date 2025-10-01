@@ -45,6 +45,33 @@ public class Vaccination {
 
     }
 
+    public Vaccination(
+        Integer id,
+        LocalDate date,
+        LocalDate nextAdministration,
+        boolean completed,
+        String vaccineName,
+        String vaccineManufacturer,
+        String vaccineBatchNumber,
+        String veterinarianName,
+        String veterinarianCrmv,
+        Pet pet
+    ) {
+        this.validateDate(date, nextAdministration);
+        this.validateNextDate(nextAdministration, date);
+        this.id = id;
+        this.date = date;
+        this.nextAdministration = nextAdministration;
+        this.completed = completed;
+        this.vaccineName = vaccineName;
+        this.vaccineManufacturer = vaccineManufacturer;
+        this.vaccineBatchNumber = vaccineBatchNumber;
+        this.veterinarianName = veterinarianName;
+        this.veterinarianCrmv = veterinarianCrmv;
+        this.pet = pet;
+
+    }
+
     public Integer getId() {
         return this.id;
     }

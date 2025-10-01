@@ -16,6 +16,15 @@ public class Pet {
         this.active = true;
     }
 
+    public Pet(Integer id, String name, String image_url, Boolean active) {
+        this.id = id;
+        this.name = name;
+        this.image_url = image_url;
+        this.active = active;
+    }
+
+    
+
     public Integer getId() {
         return this.id;
     }

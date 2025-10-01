@@ -1,9 +1,12 @@
 package com.filipe.vaccination_card_api.Core.Pet.Services;
 
+import org.springframework.stereotype.Service;
+
 import com.filipe.vaccination_card_api.Core.Pet.Pet;
 import com.filipe.vaccination_card_api.Core.Pet.Repository.IpetRepository;
 import com.filipe.vaccination_card_api.Core.Pet.UseCases.CreatePetUseCase;
 
+@Service
 public class CreatePetService implements CreatePetUseCase{
     private final IpetRepository petRepository;
 

@@ -1,8 +1,11 @@
 package com.filipe.vaccination_card_api.Core.Vaccination.Services;
 
+import org.springframework.stereotype.Service;
+
 import com.filipe.vaccination_card_api.Core.Vaccination.IvaccinationRepository;
 import com.filipe.vaccination_card_api.Core.Vaccination.UseCases.DeleteVaccinationUseCase;
 
+@Service
 public class DeleteVaccinationService implements DeleteVaccinationUseCase{
     private final IvaccinationRepository ivaccinationRepository;
 

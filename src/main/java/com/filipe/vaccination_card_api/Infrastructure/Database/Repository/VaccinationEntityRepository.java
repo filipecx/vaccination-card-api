@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.filipe.vaccination_card_api.Infrastructure.Database.Entity.VaccinationEntity;
 
 public interface VaccinationEntityRepository extends JpaRepository<VaccinationEntity, Integer>{
-    List<VaccinationEntity> findAllByIdDoneFalse(int id);
-    List<VaccinationEntity> findAllByIdDoneFalseOrderByDateDesc(int id);
+    List<VaccinationEntity> findAllByPet_IdAndCompletedFalse(int id);
+    List<VaccinationEntity> findAllByPet_IdAndCompletedFalseOrderByNextAdministrationDesc(int id);
 }

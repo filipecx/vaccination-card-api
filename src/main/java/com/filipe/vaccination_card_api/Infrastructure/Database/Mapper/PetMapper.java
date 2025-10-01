@@ -2,16 +2,19 @@ package com.filipe.vaccination_card_api.Infrastructure.Database.Mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.filipe.vaccination_card_api.Core.Pet.Pet;
 import com.filipe.vaccination_card_api.Infrastructure.Database.DatabaseError.PetMapperError;
 import com.filipe.vaccination_card_api.Infrastructure.Database.Entity.PetEntity;
 
+@Component
 public class PetMapper {
     public Pet toDomain(PetEntity petEntity) {
         if (petEntity == null) {
             throw new PetMapperError("No pet data on the database");
         }
-        return new Pet(petEntity.getName(), petEntity.getImageUrl()); 
+        return new Pet(petEntity.getId(), petEntity.getName(), petEntity.getImageUrl(), petEntity.isActive()); 
     }
 
     public List<Pet> toDomainList(List<PetEntity> petEntitiesList) {
@@ -29,6 +32,7 @@ public class PetMapper {
 
         petEntity.setImageUrl(pet.getImageUrl());
         petEntity.setName(pet.getName());
+        petEntity.setActive(true);
         
         return petEntity;
     }

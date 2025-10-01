@@ -29,7 +29,7 @@ public class PetEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "active" )
+    @Column(name = "active", columnDefinition = "boolean default true")
     private boolean active;
 
 }

@@ -2,17 +2,24 @@ package com.filipe.vaccination_card_api.Infrastructure.Database.Mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+import com.filipe.vaccination_card_api.Core.Pet.Pet;
+import com.filipe.vaccination_card_api.Core.Pet.Services.GetPetService;
 import com.filipe.vaccination_card_api.Core.Vaccination.Vaccination;
 import com.filipe.vaccination_card_api.Infrastructure.Database.DatabaseError.VaccinationEntityException;
+import com.filipe.vaccination_card_api.Infrastructure.Database.Entity.PetEntity;
 import com.filipe.vaccination_card_api.Infrastructure.Database.Entity.VaccinationEntity;
 
+@Component
 public class VaccinationMapper {
     public Vaccination toDomain(VaccinationEntity vaccinationEntity) {
         if ( vaccinationEntity == null) {
             throw new VaccinationEntityException(("No vaccination entity received. "));
         }
-
+        Pet pet = new Pet(vaccinationEntity.getPet().getId(), vaccinationEntity.getPet().getName(), vaccinationEntity.getPet().getImageUrl(), vaccinationEntity.getPet().isActive());
         return new Vaccination(
+            vaccinationEntity.getId(),
             vaccinationEntity.getDate(), 
             vaccinationEntity.getNextAdministration(),
             vaccinationEntity.isCompleted(), 
@@ -21,10 +28,10 @@ public class VaccinationMapper {
             vaccinationEntity.getVaccineBatchNumber(), 
             vaccinationEntity.getVeterinarianName(), 
             vaccinationEntity.getVeterinarianCrmv(),
-            vaccinationEntity.getPet());
+            pet);
     }
 
-    public VaccinationEntity toEntity(Vaccination vaccinationDomain) {
+    public VaccinationEntity toEntity(Vaccination vaccinationDomain, PetEntity petEntity) {
         if (vaccinationDomain == null) {
             throw new VaccinationEntityException("No vaccination domain received. ");
         }
@@ -37,7 +44,7 @@ public class VaccinationMapper {
         vaccinationEntity.setVaccineBatchNumber(vaccinationDomain.getVaccineBatchNumber());
         vaccinationEntity.setVeterinarianName(vaccinationDomain.getVeterinarianName());
         vaccinationEntity.setVeterinarianCrmv(vaccinationDomain.getVeterinarianCrmv());
-        vaccinationEntity.setPet(vaccinationDomain.getPet());
+        vaccinationEntity.setPet(petEntity);
         return vaccinationEntity;
     }
 

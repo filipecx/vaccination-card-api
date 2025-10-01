@@ -2,6 +2,9 @@ package com.filipe.vaccination_card_api.Core.Vaccination;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface IvaccinationRepository {
     Vaccination createVaccination(Vaccination vaccination);
     List<Vaccination> getAllVaccinations();

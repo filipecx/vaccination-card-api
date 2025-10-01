@@ -120,7 +120,7 @@ public class VaccinationController {
     }
 
     @GetMapping("/done/{id}")
-    public List<VaccinationResponseDTO> getAllDone(@RequestParam int id) {
+    public List<VaccinationResponseDTO> getAllDone(@PathVariable int id) {
         List<Vaccination> listOfVaccinations = getAllDoneVaccinationsService.execute(id);
         List<VaccinationResponseDTO> listOfDtos = 
         listOfVaccinations.stream().map(
@@ -141,7 +141,7 @@ public class VaccinationController {
     }
 
     @GetMapping("/nextShot/{id}")
-    public List<VaccinationResponseDTO> getNextShots(@RequestParam int id) {
+    public List<VaccinationResponseDTO> getNextShots(@PathVariable int id) {
         List<Vaccination> listOfVaccinations = getNextVaccinationsService.execute(id);
         List<VaccinationResponseDTO> listOfDtos = 
         listOfVaccinations.stream().map(
@@ -162,7 +162,7 @@ public class VaccinationController {
     }
     
     @GetMapping("/{id}")
-    public VaccinationResponseDTO getVaccination(@RequestParam int id) {
+    public VaccinationResponseDTO getVaccination(@PathVariable int id) {
         Vaccination vaccination = getVaccinationService.execute(id);
 
         VaccinationResponseDTO vaccinationResponseDTO = new VaccinationResponseDTO(          
@@ -209,10 +209,10 @@ public class VaccinationController {
     }
 
     @PatchMapping("/{id}")
-    public VaccinationResponseDTO changeDone(@PathVariable int id, @RequestBody boolean done) {
+    public VaccinationResponseDTO changeDone(@PathVariable int id, @RequestParam boolean done) {
         Vaccination vaccination = getVaccinationService.execute(id);
         vaccination.changeCompleted(done);
-
+        changeVaccinationDoneService.execute(id, done);
         return new VaccinationResponseDTO(
             vaccination.getId(), 
             vaccination.getDate(), 

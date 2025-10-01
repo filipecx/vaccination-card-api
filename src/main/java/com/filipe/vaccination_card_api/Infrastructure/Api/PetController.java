@@ -64,14 +64,14 @@ public class PetController {
         Pet pet = new Pet(petRequestDTO.name(), petRequestDTO.image_url());
         pet = createPetService.execute(pet);        
         return ResponseEntity.status(HttpStatus.CREATED)
-        .body(new PetResponseDTO(pet.getId(), pet.getName(), pet.getImageUrl()));
+        .body(new PetResponseDTO(pet.getId(), pet.getName(), pet.getImageUrl(), pet.getActive()));
     }
     
     @GetMapping
     public List<PetResponseDTO> getAllPets() {
         List<Pet> listOfPets = getAllPetsService.execute();
         List<PetResponseDTO> listOfDtos = 
-        listOfPets.stream().map(pet -> new PetResponseDTO(pet.getId(), pet.getName(), pet.getImageUrl())).toList();
+        listOfPets.stream().map(pet -> new PetResponseDTO(pet.getId(), pet.getName(), pet.getImageUrl(), pet.getActive())).toList();
 
         return listOfDtos;
     }
@@ -80,14 +80,14 @@ public class PetController {
     public List<PetResponseDTO> getAllActivePets() {
         List<Pet> listOfPets = getAllAcitvePetsService.execute();
         List<PetResponseDTO> listOfDtos = 
-        listOfPets.stream().map(pet -> new PetResponseDTO(pet.getId(), pet.getName(), pet.getImageUrl())).toList();
+        listOfPets.stream().map(pet -> new PetResponseDTO(pet.getId(), pet.getName(), pet.getImageUrl(), pet.getActive())).toList();
         return listOfDtos;
     }
 
     @GetMapping("/{id}")
-    public PetResponseDTO getMethodName(@RequestParam Integer id) {
+    public PetResponseDTO getMethodName(@PathVariable Integer id) {
         Pet pet = getPetService.execute(id);
-        PetResponseDTO petResponseDTO = new PetResponseDTO(id, pet.getName(), pet.getImageUrl());
+        PetResponseDTO petResponseDTO = new PetResponseDTO(id, pet.getName(), pet.getImageUrl(), pet.getActive());
         return petResponseDTO;
     }
 
@@ -95,7 +95,7 @@ public class PetController {
     public PetResponseDTO updatePet(@PathVariable Integer id, @RequestBody PetRequestDTO petRequestDTO) {
         Pet petToUpdate = new Pet(petRequestDTO.name(), petRequestDTO.image_url());
         Pet updatedPet = updatePetService.execute(petToUpdate, id);
-        PetResponseDTO petResponseDTO = new PetResponseDTO(id, updatedPet.getName(), updatedPet.getImageUrl());
+        PetResponseDTO petResponseDTO = new PetResponseDTO(id, updatedPet.getName(), updatedPet.getImageUrl(), updatedPet.getActive());
         return petResponseDTO;
     }
 
