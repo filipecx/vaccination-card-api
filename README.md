@@ -1,67 +1,59 @@
-# 🛒 Lista de Mercado 
+# 🐶 🐱 Carteira de Vacinação de Pets 🐾 💉 
 
 ## Descrição
 
-Uma aplicação web simples para gerenciar uma lista de compras de supermercado. O foco é dispositivos móveis, sem backend, utilizando apenas **HTML, CSS e JavaScript**, armazenando os dados no **LocalStorage**.
-
-## Próposito:
-Facilitar o gerenciamento de listas de compras de supermercado de forma simples e acessível pelo celular.
-
-## Objetivo:
-Criar uma aplicação web minimalista que permita adicionar, visualizar, marcar como comprado e remover itens da lista, sem necessidade de login ou configurações complexas.
-
-## Público alvo: 
-Pessoas que fazem compras no supermercado e querem organizar sua lista de forma prática pelo celular, sem precisar logar ou mexer em aplicativos complexos! 
+Uma aplicação web para gerenciar o histórico de imunização dos bichinhos de estimação! Utilizado Java Spring, e PostgreSQL. Tentei aplicar conceitos aprendidos de Arquitetura limpa e DDD, e também conta com testes unitários.
 
 
 ## Requisitos Funcionais 
 
-- Adicionar itens à lista
-- Visualizar todos os itens
-- Marcar itens como comprados
-- Remover itens da lista
-
-## Requisitos Não Funcionais
-- A aplicação deve ser responsiva, funcionando bem em dispositivos móveis.
-- O tempo de resposta das ações do usuário deve ser inferior a 1 segundo.
-- Os dados devem ser armazenados localmente no navegador, no LocalStorage, por exemplo, para facilitar o uso offline.
-- A interface deve ser simples e intuitiva, priorizando a usabilidade.
+- O usuário deve poder cadastrar um ou mais pets
+- O usuário deve poder registrar vacinações para o pet selecionado
+- O usuário deve poder ver as vacinações registradas do pet selecionado
+- O usuário deve poder ver quais são as próximas doses de reforço que o pet selecionado deve tomar
+- O usuário deve poder ver quais vacinas o pet não precisa mais tomar
 
 ## Tecnologias Utilizadas
 
-- **HTML5**
-- **CSS3**
-- **JavaScript (ES6+)**
-- **LocalStorage** (para persistência de dados no navegador)
+- **Java**
+- **Spring**
+- **PostgreSQL**
 
 ## 📂 Estrutura do Projeto
 
-```bash
-📁 listademercado
-├── 📄 index.html   # Estrutura
-├── 📄 styles.css   # Estilos
-└── 📄 script.js    # Lógica
+```
+📁 vaccination_card_api
+├── 📁 Core
+    ├── 📁 Pet
+        ├── 📁 DTO
+        ├── 📁 Exception
+        ├── 📁 Repository
+        ├── 📁 Services
+        ├── 📁 UseCases
+        ├── 📄  Pet.java
+    ├── 📁 Vaccination
+├── 📁 Infratructure  
+└── 📁 test  
 ```
 
 ## Documentação da API
 
-### Descrição  
-Apesar de o projeto da Lista de Mercado não ter integração com backend, foi feita a simulação de como isso funcionaria para fins de documentação.
-
-### Base URL  
-`listademercado.com`
 
 ### Tecnologias  
-✅ HTML • ✅ CSS • ✅ JavaScript • ✅ LocalStorage
+✅ Java • ✅ Spring • ✅ PostgreSQL 
 
 ### Endpoints
 
 | Método | Rota                  | Ação                | Body/Params                      | Status        |
 |--------|-----------------------|---------------------|----------------------------------|---------------|
-| `POST` | `/items`              | Adiciona item       | `{ "name": "Arroz", "quantity": 2 }` | `201 Created` |
-| `GET`  | `/items`              | Lista itens         | -                                | `200 OK`      |
-| `PUT`  | `/items/{id}/purchased` | Marca como comprado | `{ "purchased": true }`          | `200 OK`      |
-| `DELETE` | `/items/{id}`         | Remove item         | -                                | `204 No Content` |
+| `POST` | `/pets`              | Adiciona pet  | `{ "name": "Shoyu", "image_url": url }` | `201 Created` |
+| `GET`  | `/pets`              | Lista pets         | -                                  | `200 OK`      |
+| `PUT`  | `/pets/{id}` | Atualiza info pet | `{ "name": "Teryaki", "image_url": url }`   | `200 OK`      |
+| `DELETE` | `/pets/{id}`        | Remove pet         | -                                 | `204 No Content` |
+| `GET`  | `/pets/{id}`          | Mostra pet         | -                                 | `200 OK`      |
+| `PATCH`  | `/pets/{id}`        | Atualiza se pet está ativo |    `true`                 | `200 OK`      |
+| `GET`  | `/pets/actives`       | Lista todos pets ativos         | -                    | `200 OK`      |
+
 
 ### Exemplos
 
