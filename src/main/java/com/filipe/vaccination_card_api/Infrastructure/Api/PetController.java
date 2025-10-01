@@ -85,17 +85,18 @@ public class PetController {
     }
 
     @GetMapping("/{id}")
-    public Pet getMethodName(@RequestParam Integer id) {
+    public PetResponseDTO getMethodName(@RequestParam Integer id) {
         Pet pet = getPetService.execute(id);
-        return pet;
+        PetResponseDTO petResponseDTO = new PetResponseDTO(id, pet.getName(), pet.getImageUrl());
+        return petResponseDTO;
     }
 
     @PutMapping("/{id}")
-    public Pet updatePet(@PathVariable Integer id, @RequestBody PetRequestDTO petRequestDTO) {
+    public PetResponseDTO updatePet(@PathVariable Integer id, @RequestBody PetRequestDTO petRequestDTO) {
         Pet petToUpdate = new Pet(petRequestDTO.name(), petRequestDTO.image_url());
         Pet updatedPet = updatePetService.execute(petToUpdate, id);
-
-        return updatedPet;
+        PetResponseDTO petResponseDTO = new PetResponseDTO(id, updatedPet.getName(), updatedPet.getImageUrl());
+        return petResponseDTO;
     }
 
     @PatchMapping("/{id}")
