@@ -53,136 +53,76 @@ Uma aplicação web para gerenciar o histórico de imunização dos bichinhos de
 | `GET`  | `/pets/{id}`          | Mostra pet         | -                                 | `200 OK`      |
 | `PATCH`  | `/pets/{id}`        | Atualiza se pet está ativo |    `true`                 | `200 OK`      |
 | `GET`  | `/pets/actives`       | Lista todos pets ativos         | -                    | `200 OK`      |
+| `POST` | `/vaccinations`       | Adiciona registro de vacina  | `{ "date": "2025-10-01", "nextAdministration": "2026-11-02","completed": false,"vaccineName": "Polivalente","vaccineManufacturer": "Biovac","vaccineBatchNumber": "345AEC","veterinarianName": "Hugo","veterinarianCrmv": "3522", "petId": 6 }` | `201 Created` |
+| `GET`  | `/vaccinations`              | Lista vaccinations         | -                                  | `200 OK`      |
+| `PUT`  | `/vaccinations/{id}` | Atualiza info vaccinations | `{ "date": "2025-10-01", "nextAdministration": "2026-11-02","completed": false,"vaccineName": "Polivalente","vaccineManufacturer": "Biovac","vaccineBatchNumber": "345AEC","veterinarianName": "Hugo","veterinarianCrmv": "3522", "petId": 6 }`   | `200 OK`      |
+| `DELETE` | `/vaccinations/{id}`        | Remove vaccination         | -                                 | `204 No Content` |
+| `GET`  | `/vaccinations/{id}`          | Mostra vaccination         | -                                 | `200 OK`      |
+| `PATCH`  | `/vaccinations/{id}`        | Atualiza se precisa de reforço |    `true`                 | `200 OK`      |
+| `GET`  | `/vaccinations/actives`       | Lista todas vacinações pendentes         | -                    | `200 OK`      |
+| `GET`  | `/vaccinations/nextShot/{id}`       | Lista próximas doses de reforço         | -                    | `200 OK`      |
 
 
 ### Exemplos
 
-**POST /items**  
+**POST /pets**  
 Request:
 ```json
 { 
-    "name": "Arroz", 
-    "quantity": 2 
+    "name": "Maya",
+	"image_url": "urldaimage"
 }
 ```  
 `Response (201)`:
 ```json
 { 
-    "id": 1, 
-    "name": "Arroz", 
-    "quantity": 2, 
-    "purchased": false 
+    "id": 1,
+	"name": "Maya",
+	"imageUrl": "urldaimage",
+	"active": true
 }
 ```
 
-**GET /items**  
+**GET /vaccinations/nextShot**  
 `Response (200)`:
 ```json
 [
-  { 
-    "id": 1, 
-    "name": "Arroz", 
-    "quantity": 2, 
-    "purchased": false 
-    },
-  { 
-    "id": 2, 
-    "name": "Feijão", 
-    "quantity": 1, 
-    "purchased": true 
-    }
+  {
+		"id": 4,
+		"date": "2025-10-01",
+		"nextAdministration": "2026-11-02",
+		"completed": false,
+		"vaccineName": "Polivalente",
+		"vaccineManufacturer": "Biovac",
+		"vaccineBatchNumber": "345AEC",
+		"veterinarianName": "Hugo",
+		"veterinarianCrmv": "3522",
+		"petId": 6
+	},
+	{
+		"id": 3,
+		"date": "2025-10-01",
+		"nextAdministration": "2026-10-02",
+		"completed": false,
+		"vaccineName": "Polivalente",
+		"vaccineManufacturer": "Biovac",
+		"vaccineBatchNumber": "345AEC",
+		"veterinarianName": "Hugo",
+		"veterinarianCrmv": "3522",
+		"petId": 6
+	}
 ]
 ```
 
-**PUT /items/1/purchased**  
-Request:
-```json
-{ 
-    "purchased": true 
-}
-```  
-`Response (200)`:
-```json
-{ 
-    "id": 1, 
-    "name": "Arroz", 
-    "quantity": 2, 
-    "purchased": true 
-}
-```
 
-**DELETE /items/1**  
-Response: `204 No Content`
-
-### Erros Comuns
-
-| Código | Mensagem                     | Causa                  |
-|--------|------------------------------|------------------------|
-| `400`  | Campo 'name' é obrigatório   | Nome ausente           |
-| `404`  | Item não encontrado          | ID inválido            |
-| `500`  | Erro no LocalStorage         | Falha no armazenamento |
-
-**Exemplo de Erro 400**  
-```json
-{
-  "status": 400,
-  "error": "Bad Request",
-  "message": "Campo 'name' é obrigatório",
-  "timestamp": "2025-03-18T10:16:00Z"
-}
-```
-
-### 📦 Como Executar o Projeto
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/lista-de-compras.git
-   ```
-2. Navegue até a pasta do projeto:
-   ```bash
-   cd lista-de-compras
-   ```
-3. Abra o **index.html** no navegador.
-
-### 📖 Uso
-
-1. Digite o nome de um item no campo de entrada.
-2. Clique no botão **Adicionar** para incluí-lo na lista.
-3. Clique no nome do item para marcá-lo como **comprado**.
-4. Clique no **botão vermelho (❌)** para remover um item.
-5. Os itens serão salvos automaticamente no navegador.
-
-## 📌 Estrutura dos Dados (Simulando API REST)
-
-Embora a aplicação não tenha backend na V1, simulamos os seguintes endpoint:
-
-| **Método** | **Rota**      | **Descrição**               |
-|------------|--------------|-----------------------------|
-| **POST**   | `/items`      | Adiciona um novo item       |
-| **GET**    | `/items`      | Retorna todos os itens      |
-| **PUT**    | `/items/{id}` | Marca um item como comprado|
-| **DELETE** | `/items/{id}` | Remove um item da lista    |
-
-### 🛑 Tratamento de Erros
-
-| **Código** | **Mensagem**              |
-| ---------- | ------------------------- |
-| 400        | "Item não pode ser vazio" |
-| 404        | "Item não encontrado"     |
 
 ### 🚀 Próximos Passos
 
-- Adicionar integração com Backend para persistência de dados;
-- Adicionar opção de Login caso o usuário deseje;
-- Adicionar usabilidade para computadores e tablets.
+- Adicionar Frontend com React.js
 
 ### 🎓 Principais Aprendizados
 
-- Uso do LocalStorage para persistência de dados sem backend.
-- Manipulação do DOM com JavaScript puro para criar uma interface interativa.
-- Importância da responsividade para garantir uma boa experiência em dispositivos móveis.
-- Estruturação de um projeto simples, mas funcional, com HTML, CSS e JS.
-
-
-Por Angie Hempkmeier ❤️ 
+- Estratégias para implementação de arquitetura limpa e código limpo.
+- Conceitos de Domain Driven Design
+- Classes anêmicas VS Classes ricas
  
