@@ -107,8 +107,8 @@ public class Vaccination {
         }
     }
 
-    public void changeCompleted() {
-        this.completed = !this.getCompleted();
+    public void changeCompleted(Boolean done) {
+        this.completed = done;
     }
 
     private void validateString(String text) {
